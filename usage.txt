@@ -1,35 +1,20 @@
 
 
-System Monitor v11.0 - System activity monitor
+System Monitor v12.0 - System activity monitor
 Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Usage:
-Install:    C:\Users\david\AppData\Local\Temp\sysmon.exe -i [<configfile>]
-              [-h <[sha1|md5|sha256|imphash|*],...>] [-n [<process,...>]]
-              [-l [<process,...>]
-Configure:  C:\Users\david\AppData\Local\Temp\sysmon.exe -c [<configfile>]
-              [--|[-h <[sha1|md5|sha256|imphash|*],...>] [-n [<process,...>]]
-              [-l [<process,...>]]]
-Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u [force]
+Install:                 C:\Users\david\AppData\Local\Temp\sysmon.exe -i [<configfile>]
+Update configuration:    C:\Users\david\AppData\Local\Temp\sysmon.exe -c [<configfile>]
+Install event manifest:  C:\Users\david\AppData\Local\Temp\sysmon.exe -m
+Print schema:            C:\Users\david\AppData\Local\Temp\sysmon.exe -s
+Uninstall:               C:\Users\david\AppData\Local\Temp\sysmon.exe -u [force]
   -c   Update configuration of an installed Sysmon driver or dump the
        current configuration if no other argument is provided. Optionally
        take a configuration file.
-  -d   Specify the name of the installed device driver image.
-       Configuration entry: DriverName.
-       The service image and service name will be the same
-       name of the Sysmon.exe executable image.
-  -h   Specify the hash algorithms used for image identification (default
-       is SHA1). It supports multiple algorithms at the same time.
-       Configuration entry: HashAlgorithms.
   -i   Install service and driver. Optionally take a configuration file.
-  -i   Lookup DNS names for network IP addresses.
-       Configuration entry: DnsLookup.
-  -l   Log loading of modules. Optionally take a list of processes to track.
   -m   Install the event manifest (done on service install as well).
-  -n   Log network connections. Optionally take a list of processes to track.
-  -r   Check for signature certificate revocation.
-       Configuration entry: CheckRevocation.
   -s   Print configuration schema definition of the specified version.
        Specify 'all' to dump all schema versions (default is latest).
   -u   Uninstall service and driver. Adding force causes uninstall to proceed
@@ -41,8 +26,8 @@ the boot that the service will write to the event log when it starts.
 On Vista and higher, events are stored in "Applications and Services Logs/Microsoft/Windows/Sysmon/Operational". On
 older systems, events are written to the System event log.
 
-If you need more information on configuration files, use the '-? config' command. More examples are available on the
-Sysinternals website.
+Use the '-? config' command for configuration file documentation.More examples are available on the Sysinternals
+website.
 
 Specify -accepteula to automatically accept the EULA on installation, otherwise you will be interactively prompted to
 accept it.

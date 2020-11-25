@@ -1,17 +1,17 @@
 
 
-System Monitor v11.0 - System activity monitor
+System Monitor v12.0 - System activity monitor
 Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.30):
+Configuration usage (current schema is version: 4.40):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.30">
+<Sysmon schemaversion="4.40">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -44,6 +44,30 @@ entries are similar to command line switches, and have their configuration entry
 Parameters are optional based on the tag. If a command line switch also enables an event, it needs to be configured
 though its filter tag.
 
+Configuration entries include the following:
+
+  Entry                 Value     Description
+  ArchiveDirectory      String    Name of directories at volume roots into which copy-on-delete
+                                  files are moved. The directory is protected with a System ACL.
+                                  (you can use PsExec from Sysinternals to access the directory
+                                  using 'psexec -sid cmd').
+                                  Default: Sysmon
+  CheckRevocation        Boolean  Controls signature revocation checks.
+                                  Default: True
+  CopyOnDeletePE         Boolean  Preserves deleted executable image files.
+                                  Default: False
+  CopyOnDeleteSIDs       Strings  Comma-separated list of account SIDs for
+                                  which file deletes will be preserved.
+  CopyOnDeleteExtensions Strings  Extensions for files that are preserved on
+                                  delete.
+  CopyOnDeleteProcesses  Strings  Process name(s) for which file deletes will
+                                  be preserved.
+  DnsLookup              Boolean  Controls reverse DNS lookup.
+                                  Default: True
+  DriverName             String   Uses specied name for driver and service images.
+  HashAlgorithms         Strings  Hash algorithm(s) to apply for hashing. Algorithms
+                                  supported include MD5, SHA1, SHA256, IMPHASH and * (all).
+                                  Default: None
 Event filtering allows you to filter generated events. In many cases events can be noisy and gathering everything is
 not possible. For example, you might be interested about network connections only for a certain process, but not all
 of them. You can filter the output on the host reducing the data to collect.
@@ -71,6 +95,8 @@ Id     Tag                  Event
 20     WmiEvent             WmiEventConsumer activity detected
 21     WmiEvent             WmiEventConsumerToFilter activity detected
 22     DnsQuery             Dns query
+23     FileDelete           File Delete
+24     ClipboardChange      Clipboard changed
 
 You can also find these tags in the event viewer on the task name.
 

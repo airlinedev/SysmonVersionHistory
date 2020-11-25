@@ -1,6 +1,6 @@
 
 
-System Monitor v10.41 - System activity monitor
+System Monitor v10.42 - System activity monitor
 Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 

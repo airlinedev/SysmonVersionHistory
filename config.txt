@@ -1,6 +1,6 @@
 
 
-System Monitor v12.0 - System activity monitor
+System Monitor v12.01 - System activity monitor
 Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 

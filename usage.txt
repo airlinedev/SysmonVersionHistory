@@ -1,6 +1,6 @@
 
 
-System Monitor v9.01 - System activity monitor
+System Monitor v10.2 - System activity monitor
 Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
@@ -11,7 +11,7 @@ Install:    C:\Users\david\AppData\Local\Temp\sysmon.exe -i [<configfile>]
 Configure:  C:\Users\david\AppData\Local\Temp\sysmon.exe -c [<configfile>]
               [--|[-h <[sha1|md5|sha256|imphash|*],...>] [-n [<process,...>]]
               [-l [<process,...>]]]
-Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u
+Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u [force]
   -c   Update configuration of an installed Sysmon driver or dump the
        current configuration if no other argument is provided. Optionally
        take a configuration file.
@@ -30,7 +30,8 @@ Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u
        Configuration entry: CheckRevocation.
   -s   Print configuration schema definition of the specified version.
        Specify 'all' to dump all schema versions (default is latest).
-  -u   Uninstall service and driver.
+  -u   Uninstall service and driver. Adding force causes uninstall to proceed
+       even when some components are not installed.
 
 The service logs events immediately and the driver installs as a boot-start driver to capture activity from early in
 the boot that the service will write to the event log when it starts.

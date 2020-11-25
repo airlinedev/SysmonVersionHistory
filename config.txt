@@ -1,17 +1,17 @@
 
 
-System Monitor v6.02 - System activity monitor
-Copyright (C) 2014-2017 Mark Russinovich and Thomas Garnier
+System Monitor v9.01 - System activity monitor
+Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 3.30):
+Configuration usage (current schema is version: 4.20):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="3.30">
+<Sysmon schemaversion="4.20">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -67,6 +67,9 @@ Id     Tag                  Event
 15     FileCreateStreamHash File stream created
 17     PipeEvent            Pipe Created
 18     PipeEvent            Pipe Connected
+19     WmiEvent             WmiEventFilter activity detected
+20     WmiEvent             WmiEventConsumer activity detected
+21     WmiEvent             WmiEventConsumerToFilter activity detected
 
 You can also find these tags in the event viewer on the task name.
 
@@ -104,7 +107,35 @@ iexplore.exe in their path:
   </NetworkConnect>
 
 You can use both include and exclude rules for the same tag, where exclude rules override include rules. Within a
-rule, filter conditions on the same field have OR behavior, whereas conditions on different fields have AND behavior.
-In the sample configuration shown earlier, the networking filter uses both an include and exclude rule to capture
-activity to port 80 and 443 by all processes except those that have iexplore.exe in their name.
+rule, filter conditions have OR behavior,  In the sample configuration shown earlier, the networking filter uses both
+an include and exclude rule to capture activity to port 80 and 443 by all processes except those that have
+iexplore.exe in their name.
+
+It is also possible to override the way that rules are combined by using a rule group which allows the rule combine
+type for one or more events to be set explicity to AND or OR.
+
+The following example demonstrates this usage. In the first rule group, a process create event will generate when
+timeout.exe is executed only with a command - line argument of "100", but a process terminate event will generate for
+termination of ping.exe and timeout.exe.
+
+  <EventFiltering>
+    <RuleGroup name="group 1" groupRelation="and">
+      <ProcessCreate onmatch="include">
+        <Image condition="contains">timeout.exe</Image>
+        <CommandLine condition="contains">100</CommandLine>
+      </ProcessCreate>
+    </RuleGroup>
+    <RuleGroup groupRelation="or">
+      <ProcessTerminate onmatch="include"/>
+        <Image condition="contains">timeout.exe</Image>
+        <Image condition="contains">ping.exe</Image>
+    </RuleGroup>
+    <ImageLoad onmatch="include"/>
+  </EventFiltering>
+
+To have Sysmon report which rule match resulted in an event being logged, add names to rules:
+
+  <NetworkConnect onmatch="exclude">
+    <Image name="network iexplore" condition="contains">iexplore.exe</Image>
+  </NetworkConnect>
 

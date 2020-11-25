@@ -1,7 +1,7 @@
 
 
-System Monitor v6.02 - System activity monitor
-Copyright (C) 2014-2017 Mark Russinovich and Thomas Garnier
+System Monitor v9.01 - System activity monitor
+Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Usage:
@@ -15,6 +15,10 @@ Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u
   -c   Update configuration of an installed Sysmon driver or dump the
        current configuration if no other argument is provided. Optionally
        take a configuration file.
+  -d   Specify the name of the installed device driver image.
+       Configuration entry: DriverName.
+       The service image and service name will be the same
+       name of the Sysmon.exe executable image.
   -h   Specify the hash algorithms used for image identification (default
        is SHA1). It supports multiple algorithms at the same time.
        Configuration entry: HashAlgorithms.
@@ -24,7 +28,8 @@ Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u
   -n   Log network connections. Optionally take a list of processes to track.
   -r   Check for signature certificate revocation.
        Configuration entry: CheckRevocation.
-  -s   Print configuration schema definition.
+  -s   Print configuration schema definition of the specified version.
+       Specify 'all' to dump all schema versions (default is latest).
   -u   Uninstall service and driver.
 
 The service logs events immediately and the driver installs as a boot-start driver to capture activity from early in

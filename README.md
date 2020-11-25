@@ -5,3 +5,4 @@ Revision history for Sysmon usage, configuration help, and schema.
 | File Version | SHA1 | Digital Signature Date |
 |--------------|------|--------------------------|
 | 6.02 | 3252BC6FD1E25A58D01DF6901099FE9668BA9796 | 05/17/2017 02:02:00 |
+| 9.01 | FF1C037123276983C785F6CDF7EDA5A2FAB06D4A | 03/11/2019 14:58:00 |

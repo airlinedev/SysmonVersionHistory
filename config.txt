@@ -1,17 +1,17 @@
 
 
-System Monitor v9.01 - System activity monitor
+System Monitor v10.2 - System activity monitor
 Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.20):
+Configuration usage (current schema is version: 4.21):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.20">
+<Sysmon schemaversion="4.21">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -70,6 +70,7 @@ Id     Tag                  Event
 19     WmiEvent             WmiEventFilter activity detected
 20     WmiEvent             WmiEventConsumer activity detected
 21     WmiEvent             WmiEventConsumerToFilter activity detected
+22     DnsQuery             Dns query
 
 You can also find these tags in the event viewer on the task name.
 
@@ -126,9 +127,10 @@ termination of ping.exe and timeout.exe.
       </ProcessCreate>
     </RuleGroup>
     <RuleGroup groupRelation="or">
-      <ProcessTerminate onmatch="include"/>
+      <ProcessTerminate onmatch="include">
         <Image condition="contains">timeout.exe</Image>
         <Image condition="contains">ping.exe</Image>
+      </ProcessTerminate>
     </RuleGroup>
     <ImageLoad onmatch="include"/>
   </EventFiltering>

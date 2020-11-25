@@ -1,17 +1,17 @@
 
 
-System Monitor v10.41 - System activity monitor
+System Monitor v10.42 - System activity monitor
 Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.22):
+Configuration usage (current schema is version: 4.23):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.22">
+<Sysmon schemaversion="4.23">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -92,9 +92,11 @@ Field entries can use other conditions to match the value. The conditions areas 
 is            Default, values are equals.
 is not        Values are different.
 contains      The field contains this value.
-contains any  The field contains any of the ; delimited strings.
-contains all  The field contains all of the ; delimited strings.
+contains any  The field contains any of the ; delimited values.
+contains all  The field contains all of the ; delimited values.
 excludes      The field does not contain this value.
+excludes any  The field does not contain one or more of the ; delimited values.
+excludes all  The field does not contain any of the ; delimited values.
 begin with    The field begins with this value.
 end with      The field ends with this value.
 less than     Lexicographical comparison is less than zero.

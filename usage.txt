@@ -1,7 +1,7 @@
 
 
-System Monitor v10.42 - System activity monitor
-Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
+System Monitor v11.0 - System activity monitor
+Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Usage:
@@ -23,6 +23,8 @@ Uninstall:  C:\Users\david\AppData\Local\Temp\sysmon.exe -u [force]
        is SHA1). It supports multiple algorithms at the same time.
        Configuration entry: HashAlgorithms.
   -i   Install service and driver. Optionally take a configuration file.
+  -i   Lookup DNS names for network IP addresses.
+       Configuration entry: DnsLookup.
   -l   Log loading of modules. Optionally take a list of processes to track.
   -m   Install the event manifest (done on service install as well).
   -n   Log network connections. Optionally take a list of processes to track.

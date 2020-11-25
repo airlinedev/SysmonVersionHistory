@@ -1,17 +1,17 @@
 
 
-System Monitor v10.2 - System activity monitor
+System Monitor v10.41 - System activity monitor
 Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.21):
+Configuration usage (current schema is version: 4.22):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.21">
+<Sysmon schemaversion="4.22">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -89,16 +89,18 @@ For example this rule will discard any process event where the IntegrityLevel is
 
 Field entries can use other conditions to match the value. The conditions areas follow (all are case insensitive):
 
-is          Default, values are equals.
-is not      Values are different.
-contains    The field contains this value.
-excludes    The field does not contain this value.
-begin with  The field begins with this value.
-end with    The field ends with this value.
-less than   Lexicographical comparison is less than zero.
-more than   Lexicographical comparison is more than zero.
-image       Match an image path (full path or only image name). 
-            For example: lsass.exe will match c:\windows\system32\lsass.exe.
+is            Default, values are equals.
+is not        Values are different.
+contains      The field contains this value.
+contains any  The field contains any of the ; delimited strings.
+contains all  The field contains all of the ; delimited strings.
+excludes      The field does not contain this value.
+begin with    The field begins with this value.
+end with      The field ends with this value.
+less than     Lexicographical comparison is less than zero.
+more than     Lexicographical comparison is more than zero.
+image         Match an image path (full path or only image name). 
+              For example: lsass.exe will match c:\windows\system32\lsass.exe.
 
 You can use a different condition by specifying it as an attribute. This excludes network activity from processes with
 iexplore.exe in their path:
@@ -133,6 +135,26 @@ termination of ping.exe and timeout.exe.
       </ProcessTerminate>
     </RuleGroup>
     <ImageLoad onmatch="include"/>
+  </EventFiltering>
+
+In addition the <Rule> element can be used to extend the groupRelation attribute down to individual rules.
+As with RuleGroup these can also have an optional name attribute and can be combined with classic rules.
+The following example demonstrates this usage
+
+  <EventFiltering>
+    <RuleGroup name="group 1" groupRelation="or">
+      <ProcessCreate onmatch="include">
+        <Image condition="contains any">chrome.exe;firefox.exe;iexplore.exe</Image>
+        <Rule name="powershell by cmd" groupRelation="and">
+          <Image condition="end with">powershell.exe</Image>
+          <ParentImage condition="contains">cmd.exe</ParentImage>
+        </Rule>
+        <Rule groupRelation="and">
+          <Image condition="end with">cmd.exe</Image>
+          <ParentImage condition="end with">explorer.exe</ParentImage>
+        </Rule>
+      </ProcessCreate>
+    </RuleGroup>
   </EventFiltering>
 
 To have Sysmon report which rule match resulted in an event being logged, add names to rules:

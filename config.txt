@@ -1,17 +1,17 @@
 
 
-System Monitor v10.42 - System activity monitor
-Copyright (C) 2014-2019 Mark Russinovich and Thomas Garnier
+System Monitor v11.0 - System activity monitor
+Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.23):
+Configuration usage (current schema is version: 4.30):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.23">
+<Sysmon schemaversion="4.30">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>

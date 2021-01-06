@@ -5,11 +5,11 @@ Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Usage:
-Install:                 C:\Users\david\AppData\Local\Temp\sysmon.exe -i [<configfile>]
-Update configuration:    C:\Users\david\AppData\Local\Temp\sysmon.exe -c [<configfile>]
-Install event manifest:  C:\Users\david\AppData\Local\Temp\sysmon.exe -m
-Print schema:            C:\Users\david\AppData\Local\Temp\sysmon.exe -s
-Uninstall:               C:\Users\david\AppData\Local\Temp\sysmon.exe -u [force]
+Install:                 sysmon.exe -i [<configfile>]
+Update configuration:    sysmon.exe -c [<configfile>]
+Install event manifest:  sysmon.exe -m
+Print schema:            sysmon.exe -s
+Uninstall:               sysmon.exe -u [force]
   -c   Update configuration of an installed Sysmon driver or dump the
        current configuration if no other argument is provided. Optionally
        take a configuration file.
@@ -26,7 +26,7 @@ the boot that the service will write to the event log when it starts.
 On Vista and higher, events are stored in "Applications and Services Logs/Microsoft/Windows/Sysmon/Operational". On
 older systems, events are written to the System event log.
 
-Use the '-? config' command for configuration file documentation.More examples are available on the Sysinternals
+Use the '-? config' command for configuration file documentation. More examples are available on the Sysinternals
 website.
 
 Specify -accepteula to automatically accept the EULA on installation, otherwise you will be interactively prompted to

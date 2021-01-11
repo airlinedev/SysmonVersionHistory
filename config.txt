@@ -1,17 +1,17 @@
 
 
-System Monitor v12.03 - System activity monitor
-Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
+System Monitor v13.00 - System activity monitor
+Copyright (C) 2014-2021 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
-Configuration usage (current schema is version: 4.40):
+Configuration usage (current schema is version: 4.50):
 
 Configuration files can be specified after the -i (installation) or -c (configuration) switches. They make it easier
 to deploy a preset configuration and to filter captured events.
 
 A simple configuration xml file looks like this:
 
-<Sysmon schemaversion="4.40">
+<Sysmon schemaversion="4.50">
   <!-- Capture all hashes -->
   <HashAlgorithms>*</HashAlgorithms>
   <EventFiltering>
@@ -97,6 +97,7 @@ Id     Tag                  Event
 22     DnsQuery             Dns query
 23     FileDelete           File Delete
 24     ClipboardChange      Clipboard changed
+25     ProcessTampering     Process Tampering
 
 You can also find these tags in the event viewer on the task name.
 

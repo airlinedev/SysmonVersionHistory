@@ -1,15 +1,15 @@
 
 
 System Monitor v13.00 - System activity monitor
-Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
+Copyright (C) 2014-2021 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Usage:
-Install:                 sysmon.exe -i [<configfile>]
-Update configuration:    sysmon.exe -c [<configfile>]
-Install event manifest:  sysmon.exe -m
-Print schema:            sysmon.exe -s
-Uninstall:               sysmon.exe -u [force]
+Install:                 sysmon_v13.00.exe -i [<configfile>]
+Update configuration:    sysmon_v13.00.exe -c [<configfile>]
+Install event manifest:  sysmon_v13.00.exe -m
+Print schema:            sysmon_v13.00.exe -s
+Uninstall:               sysmon_v13.00.exe -u [force]
   -c   Update configuration of an installed Sysmon driver or dump the
        current configuration if no other argument is provided. Optionally
        take a configuration file.

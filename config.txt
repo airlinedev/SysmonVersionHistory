@@ -1,7 +1,7 @@
 
 
 System Monitor v13.00 - System activity monitor
-Copyright (C) 2014-2020 Mark Russinovich and Thomas Garnier
+Copyright (C) 2014-2021 Mark Russinovich and Thomas Garnier
 Sysinternals - www.sysinternals.com
 
 Configuration usage (current schema is version: 4.50):
